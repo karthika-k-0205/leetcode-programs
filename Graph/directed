@@ -1,0 +1,40 @@
+import java.util.*;
+
+class DirectedGraph {
+
+    private int vertices;
+    private ArrayList<ArrayList<Integer>> adjList;
+    DirectedGraph(int v) {
+        vertices = v;
+        adjList = new ArrayList<>();
+
+        for (int i = 0; i < v; i++) {
+            adjList.add(new ArrayList<>());
+        }
+    }
+    void addEdge(int u, int v) {
+        adjList.get(u).add(v);
+    }
+
+    void printGraph() {
+        for (int i = 0; i < vertices; i++) {
+            System.out.print(i + " ->");
+            for (int node : adjList.get(i)) {
+                System.out.print(node + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        DirectedGraph graph = new DirectedGraph(5);
+
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 4);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 4);
+
+        graph.printGraph();
+    }
+}
