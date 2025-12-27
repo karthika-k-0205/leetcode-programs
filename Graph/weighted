@@ -1,0 +1,51 @@
+import java.util.*;
+
+class weightedGraph {
+
+    static class Edge {
+        int dest;
+        int weight;
+
+        Edge(int dest, int weight) {
+            this.dest = dest;
+            this.weight = weight;
+        }
+    }
+
+    private final int V;
+    private final List<List<Edge>> adjList;
+
+    weightedGraph(int vertices) {
+        V = vertices;
+        adjList = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            adjList.add(new ArrayList<>());
+        }
+    }
+    void addEdge(int src, int dest, int weight) {
+        adjList.get(src).add(new Edge(dest, weight));
+    }
+
+    void display() {
+        for (int i = 0; i < V; i++) {
+            System.out.print("Vertex " + i + " -> ");
+            for (Edge e : adjList.get(i)) {
+                System.out.print("(" + e.dest + ", weight=" + e.weight + ") ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        weightedGraph graph = new weightedGraph(5);
+
+        graph.addEdge(0, 1, 4);
+        graph.addEdge(0, 2, 3);
+        graph.addEdge(1, 3, 2);
+        graph.addEdge(2, 3, 7);
+        graph.addEdge(3, 4, 1);
+
+        graph.display();
+    }
+}
